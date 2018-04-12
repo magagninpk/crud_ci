@@ -9,7 +9,6 @@ class Cadastro extends CI_Controller {
 
   public function store(){
 
-    //
     $this->load->helper(array('form', 'url'));
 
 		$this->load->library('form_validation');
@@ -97,22 +96,19 @@ class Cadastro extends CI_Controller {
 
 		if ($id) {
 
-			$cadastros = $this->m_cadastros->get($id);
+			$cadastros = $this->m_cadastros->get($id)->result();
 
-      foreach($cadastros -> result() as $cadastro):
-  			if (count($cadastros) > 0 ) {
+
+  			if (count($cadastros) > 0) {
   				$variaveis['titulo'] = 'Edição de Registro';
-  				$variaveis['id'] = $cadastro->id;
-  				$variaveis['nome'] = $cadastro->nome;
-  				$variaveis['telefone'] = $cadastro->telefone;
-  				$variaveis['email'] = $cadastro->email;
-  				$variaveis['observacoes'] = $cadastro->observacoes;
+  				$variaveis['id'] = $cadastros[0]->id;
+  				$variaveis['nome'] = $cadastros[0]->nome;
+  				$variaveis['telefone'] = $cadastros[0]->telefone;
+  				$variaveis['email'] = $cadastros[0]->email;
+  				$variaveis['observacoes'] = $cadastros[0]->observacoes;
   				$this->load->view('v_cadastro', $variaveis);
-  			} else {
-  				$variaveis['mensagem'] = "Registro não encontrado." ;
-  				$this->load->view('errors/html/v_erro', $variaveis);
   			}
-      endforeach;
+
 		}
 
 	}
