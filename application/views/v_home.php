@@ -18,7 +18,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<?= anchor('cadastro/create', 'Novo Cadastro', array('class' => 'btn btn-success')); ?>
 			</div>
 			<div class="row">
-				<h3><?= count($cadastros); ?> registros(s)</h3>
+				<h3><?= $cadastros->num_rows(); ?> registros(s)</h3>
 			</div>
 			<div class="row">
 			<?php if (count($cadastros) > 0): ?>
@@ -34,16 +34,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						</tr>
 					</thead>
 					<tbody>
-						<?php foreach($cadastros as $cadastro): ?>
-						<tr>
-							<td><?= $cadastro["id"] ?></td>
-							<td><?= $cadastro["nome"] ?></td>
-							<td><?= $cadastro["telefone"] ?></td>
-							<td><?= $cadastro["email"] ?></td>
-							<td><?= $cadastro["observacoes"] ?></td>
-							<td><?= anchor("cadastro/edit/" . $cadastro["id"],  "Editar") ?>
-								 | <a href="#" class='confirma_exclusao' data-id="<?= $cadastro["id"] ?>" data-nome="<?= $cadastro["nome"] ?>" />Excluir</a></td>
-						</tr>
+						<?php foreach($cadastros -> result() as $cadastro): ?>
+							<tr>
+								<td><?= $cadastro->id ?></td>
+								<td><?= $cadastro->nome ?></td>
+								<td><?= $cadastro->telefone ?></td>
+								<td><?= $cadastro->email ?></td>
+								<td><?= $cadastro->observacoes ?></td>
+								<td><?= anchor("cadastro/edit/$cadastro->id", "Editar") ?>
+									 | <a href="#" class='confirma_exclusao' data-id="<?= $cadastro->id ?>" data-nome="<?= $cadastro->nome ?>" />Excluir</a></td>
+							</tr>
 					<?php endforeach; ?>
 					</tbody>
 				</table>

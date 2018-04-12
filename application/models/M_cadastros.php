@@ -34,22 +34,13 @@ class M_cadastros extends CI_Model {
 	 * @return objeto da banco de dados da tabela cadastros
 	 */
 	public function get($id = null){
-
-		// $this->db->order_by("id", 'desc');
-		// return $this->db->get('cadastros');
-
-		$query = $this->db->get('cadastros');
-		return $query->result_array();
-		// $query = $query->result_array();
-		// return arrayToObject($query);
+		
+		if ($id) {
+			$this->db->where('id', $id);
+		}
+		$this->db->order_by("id", 'desc');
+		return $this->db->get('cadastros');
 	}
-
-	// function arrayToObject($array){
-	// 	foreach( $array as $key => $value ){
-	// 		if( is_array( $value ) ) $array[ $key ] = arrayToObject( $value );
-  // 	}
-  // 	return (object) $array;
-	// }
 	/**
 	 * Deleta um registro.
 	 * @param $id do registro a ser deletado
