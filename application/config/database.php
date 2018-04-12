@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'root',
+	'hostname' => 'auth-db136.hostinger.com.br',
+	'username' => 'u131002835_crud',
 	'password' => 'pass123',
-	'database' => 'crudci',
+	'database' => 'u131002835_crud',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
